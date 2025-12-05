@@ -106,13 +106,13 @@
   let endTime = localStorage.getItem("offer_end_time");
 
   if (!endTime) {
-    endTime = Date.now() + totalTime * 1800;
+    endTime = Date.now() + totalTime * 1000;
     localStorage.setItem("offer_end_time", endTime);
   }
 
   function updateCountdown() {
     const now = Date.now();
-    const timeLeft = Math.floor((endTime - now) / 1800);
+    const timeLeft = Math.floor((endTime - now) / 1000);
 
     if (timeLeft <= 0) {
       countdownElement.textContent = "TEMPO ESGOTADO!";
@@ -126,7 +126,7 @@
       `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   }
 
-  setInterval(updateCountdown, 1800);
+  setInterval(updateCountdown, 1000);
   updateCountdown();
 </script>
 
