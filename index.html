@@ -93,6 +93,72 @@
         src="https://www.kintu.org/product/d1ed0aea-87f3-44b0-9515-6bf31071196d">
 </iframe>
 
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificações de Compras</title>
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@2.6.0/dist/notiflix-aio-2.6.0.min.js"></script>
+
+
+    <script>
+        // Configurações da notificação
+        var position = "left-bottom"; // Posição da notificação
+        var color = "verde"; // Cor da notificação
+        var animation = "from-left"; // Animação da notificação
+        var product_name = ""; // Nome do produto
+        var phrase = "acabou de comprar"; // Frase após o nome da pessoa
+        var timeout = 4000; // Duração da notificação
+        var type_name = "fem"; // Tipo de nome (apenas feminino)
+        var msg_final = "";
+        
+        // Lista de nomes femininos
+        var names_fem = [
+            'João', 'Manuel', 'Paulo', 'Carlos', 'Pedro', 'José', 'António',
+            'Filipe', 'Domingos', 'Miguel', 'Mateus', 'Daniel', 'Jorge',
+            'Adilson', 'Edson', 'Emanuel', 'Geraldo', 'Luís', 'Fernando',
+            'Kazumbula', 'Osvaldo', 'Valter', 'Maurício', 'Tomás', 'César',
+            'Ana', 'Antónia', 'Adriana', 'Juliana', 'Márcia', 'Fernanda',
+            'Patrícia', 'Camila', 'Bruna', 'Jéssica', 'Luciana', 'Mariana',
+            'Vitória', 'Cláudia'
+        ];
+
+        var option = {
+            position: position,
+            cssAnimationStyle: animation,
+            plainText: false,
+            timeout: timeout
+        };
+
+        function show_notification() {
+            // Seleciona um nome feminino aleatório
+            msg_final = "<strong>" + names_fem[Math.floor(Math.random() * names_fem.length)] + "</strong>";
+            msg_final += decodeURIComponent(escape(" " + phrase + " " + product_name));
+
+            // Exibe a notificação de acordo com a cor especificada
+            if (color == "verde") {
+                Notiflix.Notify.Success(msg_final, option);
+            }
+
+            if (color == "azul") {
+                Notiflix.Notify.Info(msg_final, option);
+            }
+
+            if (color == "vermelho") {
+                Notiflix.Notify.Failure(msg_final, option);
+            }
+
+            if (color == "amarelo") {
+                Notiflix.Notify.Warning(msg_final, option);
+            }
+
+            // Define o intervalo de 30 segundos para a próxima notificação
+            setTimeout(show_notification, 30000);
+        }
+
+        // Primeira notificação após 10 segundos
+        setTimeout(show_notification, 10000);
+    </script>
+
+
 <script>
   const countdownElement = document.getElementById("countdown");
 
